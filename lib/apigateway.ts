@@ -12,11 +12,11 @@ export class SwnApiGateway extends Construct {
         super(scope, id);
 
         this.createProductApi(props.productMicroservice);
-        this.createBasketApi(props.basketMicroservice)
+        this.createBasketApi(props.basketMicroservice);
     }
 
     private createProductApi(productMicroservice: IFunction) {
-         // Product microservices api gateway
+        // Product microservices api gateway
         // product
         // GET /product
         // POST /pdocut
