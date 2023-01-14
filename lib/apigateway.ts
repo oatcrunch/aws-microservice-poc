@@ -18,7 +18,7 @@ export class SwnApiGateway extends Construct {
     }
 
     private createProductApi(productMicroservice: IFunction) {
-         // Product microservices api gateway
+        // Product microservices api gateway
         // product
         // GET /product
         // POST /pdocut
