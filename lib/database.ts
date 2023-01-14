@@ -10,6 +10,7 @@ import { Construct } from 'constructs';
 export class SwnDatabase extends Construct {
     public readonly productTable: ITable;
     public readonly basketTable: ITable;
+    public readonly orderTable: ITable;
 
     constructor(scope: Construct, id: string) {
         super(scope, id);
@@ -18,6 +19,7 @@ export class SwnDatabase extends Construct {
         // this.productTable = productTable;
         this.basketTable = this.createBasketTable();
         // this.basketTable = basketTable;
+        this.orderTable = this.createOrderTable();
     }
 
     private createBasketTable(): ITable {
@@ -42,5 +44,22 @@ export class SwnDatabase extends Construct {
             removalPolicy: RemovalPolicy.DESTROY,
             billingMode: BillingMode.PAY_PER_REQUEST
         });
+    }
+
+    private createOrderTable(): ITable {
+        const orderTable = new Table(this, 'order', {
+            partitionKey: {
+                name: 'userName',
+                type: AttributeType.STRING
+            },
+            sortKey: {
+                name: 'orderDate',
+                type: AttributeType.STRING
+            },
+            tableName: 'order',
+            removalPolicy: RemovalPolicy.DESTROY,
+            billingMode: BillingMode.PAY_PER_REQUEST
+        });
+        return orderTable;
     }
 }
